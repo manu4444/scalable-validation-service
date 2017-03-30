@@ -1,0 +1,81 @@
+#	Global Workpool Configs
+GlobalWorkpool.DISPATCH_BATCH_SIZE=10
+GlobalWorkpool.NOAFFINITY_BATCH_SIZE=10
+GlobalWorkpool.printProgressInterval=30000
+GlobalWorkpool.locality=false
+GlobalWorkpool.idleTimeInterval=60000
+GlobalWorkpool.speculativeChecking=true
+GlobalWorkpool.logging=false
+GlobalWorkpool.modelType=barrier
+GlobalWorkpool.concurrentValidator=true
+GlobalWorkpool.NODE_SIZE=1000
+ConcurrentValidator.nLocks=256
+#	Local Workpool Configs
+LocalWorkpool.progressMonitorInterval=20000
+LocalWorkpool.printStatusInterval=20000
+LocalWorkpool.SLEEP_TIME=50
+LocalWorkpool.GAP_TIME=50
+LocalWorkpool.STS_DELAY=10
+LocalWorkpool.pullTask=true
+LocalWorkpool.logging=false
+LocalWorkpool.modelType=TRANSACTION
+#
+###############################################
+# Task Distribution related flags 
+###############################################
+# Version can be V1 or V2. 
+# V2 is simplified form of distributor using batching and buddy distribution
+LocalWorkpool.LoadDistribution.Version=V2
+
+#Distribution Policies for V1 
+# 1) KWAYSPLIT-(kwaySplitYpe - a) RANDOM, b) LDAWARE), 
+# 2) ROUNDROBIN, 3) LCLDAWARE ( Locality Aware , Load Aware)
+LocalWorkpool.distributionPolicy=KWAYSPLIT
+LocalWorkpool.kwaySplitType=LDAWARE
+LocalWorkpool.ksplit=3
+
+# Distribution Policies for V2
+# 1) RANDOM, 2) ROUND_ROBIN, 3) MIN_QUEUE, 4) MAX_QUEUE
+LocalWorkpool.LoadDistribution.Policy=RANDOM
+LocalWorkpool.LoadDistribution.QueueDispatchSize=20
+LocalWorkpool.LoadDistribution.QueueDispatchTimeout=1000
+LocalWorkpool.LoadDistribution.LocalTaskDepositRatio=0.5
+
+
+#	Local Validator Configs
+LocalValidator.BATCHSIZE=10
+LocalValidator.usebatching=false
+#	Worker Configs
+Worker.THREADSLEEPTIME=10
+Worker.WORKER_COUNT=8
+#	Logger Configs
+Logger.BUF_SIZE=8000
+Logger.PrintToFile=false
+Logger.PrintToConsole=false
+Logger.logLevels=debug
+#	Server Configs
+Server.CacheInvalidationScheme=2
+Server.useCaching=false
+Server.CacheTableSize=1000
+Server.CacheCleanupTarget=0.8
+Server.CacheWindow=5000
+#	Storage System Configs
+StorageSystem.WriteThroughCache=false
+StorageSystem.MAX_ATTEMPTS=3
+StorageSystem.useNodeData=false
+Server.useNodeDataReflection=true
+StorageSystem.recordStats=true
+#
+Server.canonicalHostNames=true
+# remotecalls : parallel:0, serial:1, executorservice:2
+StorageSystem.remoteCalls=1
+#Call Bucketization and Caching
+StorageSystem.BatchDispatchTimeout=5
+StorageSystem.BatchCountThreshold=3
+StorageSystem.NodeDataRequestDispatchPoolSize=8
+StorageSystem.NodeDataCacheSize=50000
+StorageSystem.NodeDataCachePurgeThreshold=0.9
+StorageSystem.NodeDataCachePurgePeriod=500000
+StorageSystem.NodeDataCacheCleanupFraction=0.1
+
+Server.FileLoader=InputFileReaderV2
